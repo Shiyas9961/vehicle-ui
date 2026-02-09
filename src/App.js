@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import API_BASE_URL from "./config";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function App() {
   const [health, setHealth] = useState("Loading...");

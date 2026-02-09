@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     // Health check
-    fetch(`/api/health`)
+    fetch(`/health`)
       .then(res => res.json())
       .then(data => setHealth(data))
       .catch(() => setHealth("Backend not reachable"));

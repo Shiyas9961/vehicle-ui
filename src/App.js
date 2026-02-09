@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
 function App() {
   const [health, setHealth] = useState("Loading...");
   const [vehicles, setVehicles] = useState([]);
@@ -9,13 +7,13 @@ function App() {
 
   useEffect(() => {
     // Health check
-    fetch(`${API_BASE_URL}/api/health`)
+    fetch(`/api/health`)
       .then(res => res.json())
       .then(data => setHealth(data))
       .catch(() => setHealth("Backend not reachable"));
 
     // Vehicle list
-    fetch(`${API_BASE_URL}/api/vehicles`)
+    fetch(`/api/vehicles`)
       .then(res => res.json())
       .then(data => setVehicles(data))
       .catch(() => setError("Failed to load vehicles"));

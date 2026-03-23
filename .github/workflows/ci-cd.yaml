@@ -18,7 +18,7 @@ jobs:
 
             - name: Set image tag
               run: |
-                if [ "${GITHUB_REF}" = "main" ]; then
+                if [ "${GITHUB_REF_NAME}" = "main" ]; then
                   echo "IMAGE_TAG=1.0.${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
                   echo "OVERLAY=prod" >> $GITHUB_ENV
                 else
@@ -62,7 +62,7 @@ jobs:
                 cd vehicle-k8s-config
                 yq -i '
                   (.images[] | select(.name == "${{ secrets.DOCKER_USERNAME }}/vehicle-frontend") | .newTag) = strenv(IMAGE_TAG)
-                ' overlays/${OVERLAY}/kustomization.yaml
+                ' overlays/${OVERLAY}/kustomization.yml
 
             - name: Commit and push changes
               run: |

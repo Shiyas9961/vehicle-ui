@@ -42,7 +42,7 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/vehicle-frontend:latest
-            ${{ secrets.DOCKER_USERNAME }}/vehicle-frontend:${IMAGE_TAG}
+            ${{ secrets.DOCKER_USERNAME }}/vehicle-frontend:${{ env.IMAGE_TAG }}
 
       - name: Checkout manifest file
         uses: actions/checkout@v4

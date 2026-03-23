@@ -69,7 +69,7 @@ jobs:
                 cd vehicle-k8s-config
                 git config user.email "github-actions@github.com"
                 git config user.name "GitHub Actions"
-                git add overlays/${OVERLAY}/kustomization.yaml
+                git add overlays/${OVERLAY}/kustomization.yml
                 git diff --cached --quiet && echo "No changes to commit" && exit 0
                 git commit -m "Update vehicle-frontend image tag to ${IMAGE_TAG}"
                 git push origin HEAD

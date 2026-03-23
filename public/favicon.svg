@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="18" x2="110" y1="12" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8E7D6"/>
+      <stop offset="1" stop-color="#C96A3C"/>
+    </linearGradient>
+    <linearGradient id="car" x1="28" x2="101" y1="42" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7A2512"/>
+      <stop offset="1" stop-color="#2C1A10"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <rect x="24" y="64" width="80" height="20" rx="8" fill="url(#car)"/>
+  <path d="M38 64 L52 46 H77 L92 64 Z" fill="url(#car)"/>
+  <rect x="48" y="51" width="14" height="10" rx="3" fill="#F7EBDD" opacity=".85"/>
+  <rect x="64" y="51" width="16" height="10" rx="3" fill="#F7EBDD" opacity=".85"/>
+  <circle cx="44" cy="88" r="10" fill="#F7EBDD"/>
+  <circle cx="84" cy="88" r="10" fill="#F7EBDD"/>
+  <circle cx="44" cy="88" r="4" fill="#7A2512"/>
+  <circle cx="84" cy="88" r="4" fill="#7A2512"/>
+  <rect x="26" y="70" width="10" height="5" rx="2.5" fill="#F7EBDD" opacity=".9"/>
+  <rect x="92" y="70" width="10" height="5" rx="2.5" fill="#F7EBDD" opacity=".9"/>
+</svg>

@@ -16,6 +16,16 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v4
 
+            - name: Set image tag
+              run: |
+                if [ "${GITHUB_REF}" = "main" ]; then
+                  echo "IMAGE_TAG=1.0.${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+                  echo "OVERLAY=prod" >> $GITHUB_ENV
+                else
+                  echo "IMAGE_TAG=dev-${GITHUB_SHA}" >> $GITHUB_ENV
+                  echo "OVERLAY=dev" >> $GITHUB_ENV
+                fi
+
             - name: Setup Docker Buildx
               uses: docker/setup-buildx-action@v2
 
@@ -33,3 +43,33 @@ jobs:
                 tags: | 
                     ${{ secrets.DOCKER_USERNAME }}/vehicle-frontend:latest
                     ${{ secrets.DOCKER_USERNAME }}/vehicle-frontend:${{ github.run_number }}
+
+            - name: Checkout manifest file
+              uses: actions/checkout@v4
+              with:
+                repository: Shiyas9961/vehicle-k8s-config
+                token: ${{ secrets.MANIFEST_REPO_TOKEN }}
+                path: vehicle-k8s-config
+                fetch-depth: 0
+
+            - name: Install yq
+              run: |
+                sudo wget -q -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+                sudo chmod +x /usr/local/bin/yq
+
+            - name: Update frontend image tag in kukustomization
+              run: |
+                cd vehicle-k8s-config
+                yq -i '
+                  (.images[] | select(.name == "${{ secrets.DOCKER_USERNAME }}/vehicle-frontend") | .newTag) = strenv(IMAGE_TAG)
+                ' overlays/${OVERLAY}/kustomization.yaml
+
+            - name: Commit and push changes
+              run: |
+                cd vehicle-k8s-config
+                git config user.email "github-actions@github.com"
+                git config user.name "GitHub Actions"
+                git add overlays/${OVERLAY}/kustomization.yaml
+                git diff --cached --quiet && echo "No changes to commit" && exit 0
+                git commit -m "Update vehicle-frontend image tag to ${IMAGE_TAG}"
+                git push origin HEAD

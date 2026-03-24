@@ -1,7 +1,7 @@
 html {
   background:
-    linear-gradient(180deg, rgba(245, 239, 228, 0.94), rgba(234, 216, 197, 0.88)),
-    #f5efe4;
+    linear-gradient(180deg, rgba(238, 243, 249, 0.98), rgba(219, 228, 239, 0.94)),
+    #eef3f9;
 }
 
 body {
@@ -9,8 +9,8 @@ body {
   min-width: 320px;
   font-family: "Segoe UI", "Trebuchet MS", sans-serif;
   background:
-    linear-gradient(180deg, rgba(245, 239, 228, 0.94), rgba(234, 216, 197, 0.88)),
-    #f5efe4;
+    linear-gradient(180deg, rgba(238, 243, 249, 0.98), rgba(219, 228, 239, 0.94)),
+    #eef3f9;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

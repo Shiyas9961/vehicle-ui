@@ -159,7 +159,7 @@ function App() {
       <section className="hero-panel">
         <div className="hero-copy">
           <p className="eyebrow">Fleet Operations</p>
-          <h1>Vehicle Command Center Updated</h1>
+          <h1>Vehicle Command Center</h1>
           <p className="hero-text">
             Monitor fleet health, inspect vehicle readiness, and keep operating
             teams aligned from one dashboard.
